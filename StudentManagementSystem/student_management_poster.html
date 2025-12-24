@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System - Project Poster</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .poster {
+            background: white;
+            width: 800px;
+            height: 600px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            height: calc(100% - 140px);
+        }
+
+        .features {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+        }
+
+        .features h3 {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .features h3::before {
+            content: '🔧';
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            color: #34495e;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+            background: #d5f4e6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .tech-stack {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .tech-stack h3 {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tech-stack h3::before {
+            content: '💡';
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .performance {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ffeaa7;
+            margin-top: 15px;
+        }
+
+        .performance h4 {
+            color: #856404;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .performance-item {
+            font-size: 0.9em;
+            color: #856404;
+            margin: 5px 0;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer .author {
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .footer .github {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+        }
+
+        .java-icon {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #f89820;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5em;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .poster {
+                box-shadow: none;
+                border: 2px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="poster">
+    <div class="header">
+        <div class="java-icon">JAVA</div>
+        <h1>Student Management System</h1>
+        <p class="subtitle">Console-Based CRUD Application with File Persistence</p>
+    </div>
+
+    <div class="content">
+        <div class="features">
+            <h3>Key Features</h3>
+            <ul class="feature-list">
+                <li>Complete CRUD Operations</li>
+                <li>Input Validation (Regex)</li>
+                <li>File-Based Persistence</li>
+                <li>Statistical Dashboard</li>
+                <li>Menu-Driven Interface</li>
+                <li>Auto-Generated IDs</li>
+                <li>Error Handling</li>
+                <li>GPA Analysis</li>
+            </ul>
+        </div>
+
+        <div class="tech-stack">
+            <h3>Technical Stack</h3>
+            <div class="tech-badges">
+                <span class="badge">Java 11+</span>
+                <span class="badge">Maven</span>
+                <span class="badge">ArrayList</span>
+                <span class="badge">File I/O</span>
+                <span class="badge">OOP</span>
+                <span class="badge">Regex</span>
+            </div>
+
+            <div class="performance">
+                <h4>⚡ Performance Metrics</h4>
+                <div class="performance-item">• Add Student: O(1) insertion</div>
+                <div class="performance-item">• Search: O(n) linear search</div>
+                <div class="performance-item">• Validation: O(1) regex matching</div>
+                <div class="performance-item">• File Operations: O(n) persistence</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="author">👨‍💻 [Madhav Musale] - Software Developer</div>
+        <div class="github">🔗 GitHub: [https://github.com/MadhavMusale/Student-Management-System/tree/main/StudentManagementSystem]</div>
+    </div>
+</div>
+
+<script>
+    // Add some interactive elements
+    document.addEventListener('DOMContentLoaded', function() {
+        const badges = document.querySelectorAll('.badge');
+        badges.forEach(badge => {
+            badge.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'transform 0.2s ease';
+            });
+            badge.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Add animation to feature list items
+        const featureItems = document.querySelectorAll('.feature-list li');
+        featureItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            setTimeout(() => {
+                item.style.transition = 'all 0.5s ease';
+                item.style.opacity = '1';
+                item.style.transform = 'translateX(0)';
+            }, index * 100);
+        });
+    });
+</script>
+</body>
+</html>
